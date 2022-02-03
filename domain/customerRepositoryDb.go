@@ -2,14 +2,9 @@ package domain
 
 import (
 	"database/sql"
-	"fmt"
-	"log"
-	"os"
-	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
-	"github.com/joho/godotenv"
 	"github.com/manishdangi98/banking/errs"
 	"github.com/manishdangi98/banking/logger"
 )
@@ -50,26 +45,6 @@ func (d CustomerRepositoryDb) ById(id string) (*Customer, *errs.AppError) {
 	return &c, nil
 }
 
-func NewCustomerRepositoryDb() CustomerRepositoryDb {
-
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal("Error while loading .env for DB")
-	}
-	dbUser := os.Getenv("DB_USER")
-	dbPasswd := os.Getenv("DB_PASSWD")
-	dbAddr := os.Getenv("DB_ADDR")
-	dbPort := os.Getenv("DB_PORT")
-	dbName := os.Getenv("DB_NAME")
-
-	dataSource := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", dbUser, dbPasswd, dbAddr, dbPort, dbName)
-
-	client, err := sqlx.Open("mysql", dataSource)
-	if err != nil {
-		panic(err)
-	}
-	client.SetConnMaxIdleTime(time.Minute * 3)
-	client.SetMaxIdleConns(10)
-	client.SetMaxOpenConns(10)
-	return CustomerRepositoryDb{client}
+func NewCustomerRepositoryDb(dbClient *sqlx.DB) CustomerRepositoryDb {
+	return CustomerRepositoryDb{dbClient}
 }

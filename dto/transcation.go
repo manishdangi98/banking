@@ -21,7 +21,7 @@ func (r TransactionRequest) IsTransactionTypeWithdrawal() bool {
 }
 
 func (r TransactionRequest) Validate() *errs.AppError {
-	if r.TransactionType != WITHDRAWAL && r.TransactionDate != DEPOSIT {
+	if r.TransactionType != WITHDRAWAL && r.TransactionType != DEPOSIT {
 		return errs.NewValidationError("Transaction type can only be deposit or withdrwal")
 	}
 	if r.Amount < 0 {

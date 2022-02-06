@@ -25,8 +25,5 @@ type AccountRepository interface {
 }
 
 func (a Account) CanWithdraw(amount float64) bool {
-	if a.Amount < amount {
-		return false
-	}
-	return true
+	return a.Amount >= amount
 }

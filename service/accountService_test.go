@@ -4,9 +4,9 @@ import (
 	"testing"
 
 	"github.com/golang/mock/gomock"
+	"github.com/manishdangi98/banking-lib/errs"
 	realdomain "github.com/manishdangi98/banking/domain"
 	"github.com/manishdangi98/banking/dto"
-	"github.com/manishdangi98/banking/errs"
 	"github.com/manishdangi98/banking/mocks/domain"
 )
 

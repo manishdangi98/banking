@@ -10,8 +10,8 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/jmoiron/sqlx"
 	"github.com/joho/godotenv"
+	"github.com/manishdangi98/banking-lib/logger"
 	"github.com/manishdangi98/banking/domain"
-	"github.com/manishdangi98/banking/logger"
 	"github.com/manishdangi98/banking/service"
 )
 

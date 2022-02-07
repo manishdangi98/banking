@@ -5,8 +5,8 @@ import (
 	"strings"
 
 	"github.com/gorilla/mux"
+	"github.com/manishdangi98/banking-lib/errs"
 	"github.com/manishdangi98/banking/domain"
-	"github.com/manishdangi98/banking/errs"
 )
 
 type AuthMiddleware struct {
